@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Easy 18650</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>Configuration: {{ series }}s/{{ parallel }}p</p>
+        <p>Voltage: {{ batteryPackVoltage }}V</p>
+        <p>Charge voltage: {{ batteryPackChargeVoltage }}V</p>
+        <p>Battery capacity: {{ batteryCapacity }}Ah</p>
+        <p>Number of cells: {{ numberOfCells }}</p>
+        <p>Battery max discharge current: {{ maxDischargeCurrent }}A</p>
+        <p>Battery power: {{ batteryPower }}Wh</p>
+        <p>Battery weight (45gr/cell): {{ batteryWeight }}Kg</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list-header>
+            Cells in series: {{ series }}
+          </ion-list-header>
+          <ion-range min="1" max="33" step="1" pin="true" snaps="true" ticks="false" color="secondary" name="series"
+            [(ngModel)]="series" (ionChange)="update(f)" class="ion-no-padding">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">33</ion-label>
+          </ion-range>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list-header>
+            Cells in parallel: {{ parallel }}
+          </ion-list-header>
+          <ion-range min="1" max="20" step="1" pin="true" snaps="true" ticks="false" color="secondary" name="parallel"
+            [(ngModel)]="parallel" (ionChange)="update(f)" class="ion-no-padding">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">20</ion-label>
+          </ion-range>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list-header>
+            Cell capacity: {{ cellCapacity }}mAh
+          </ion-list-header>
+          <ion-range min="2000" max="3600" step="50" pin="true" snaps="true" ticks="false" color="secondary"
+            name="cellCapacity" [(ngModel)]="cellCapacity" (ionChange)="update(f)" class="ion-no-padding">
+            <ion-label slot="start">2000</ion-label>
+            <ion-label slot="end">3600</ion-label>
+          </ion-range>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list-header>
+            Cell max current: {{ cellCurrent }}A
+          </ion-list-header>
+          <ion-range min="4" max="45" step="1" pin="true" snaps="true" ticks="false" color="secondary"
+            name="cellCurrent" [(ngModel)]="cellCurrent" (ionChange)="update(f)" class="ion-no-padding">
+            <ion-label slot="start">4</ion-label>
+            <ion-label slot="end">45</ion-label>
+          </ion-range>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>
